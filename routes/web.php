@@ -17,14 +17,8 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('/produtos',function(){
-    return view('produtos');
-})->name('produtos');
+Route::get('/produtos',  [App\Http\Controllers\ControladorProduto::class  ,'index'])->name('produtos');
+Route::get('/categorias',[App\Http\Controllers\ControladorCategoria::class,'index'])->name('categorias');
 
-Route::get('/categorias',function(){
-    return view('show_categoria');
-})->name('categorias');
-
-Auth::routes();
-
+//Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
