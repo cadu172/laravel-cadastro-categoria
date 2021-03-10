@@ -27,7 +27,8 @@
 </head>
 <body>
     <div id="app" class="container">
-        @component('components.navbar')        
+        @component('components.navbar',
+            ['current_navbar' => $current_navbar])        
         @endcomponent
         <main role="main">
             @yield('content')

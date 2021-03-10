@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',['current_navbar' => 'produto'])
 @section('content')
     <div class="jumbotron bg-ligth border border-secondary">
         <div class="row">

@@ -17,7 +17,8 @@ class ControladorCategoria extends Controller
         $categorias = Categoria::all();
         
         //
-        return view('index_categoria',compact('categorias'));
+        return view('index_categoria',
+            compact('categorias'));
     }
 
     /**
@@ -28,6 +29,7 @@ class ControladorCategoria extends Controller
     public function create()
     {
         //
+        return view("create_categoria");        
     }
 
     /**
@@ -39,6 +41,13 @@ class ControladorCategoria extends Controller
     public function store(Request $request)
     {
         //
+        $categ = new Categoria();
+        $categ->nome = $request->input('nome');
+        $categ->save();
+
+        // voltar ao index para listar os dados cadastrados
+        //return $this->index();
+        return redirect(route('categorias'));
     }
 
     /**
@@ -61,6 +70,16 @@ class ControladorCategoria extends Controller
     public function edit($id)
     {
         //
+        //
+        $categ = Categoria::find($id);
+
+        if ( isset($categ) )
+        {
+            return view('edit_categoria',compact('categ'));
+        }
+        
+        // voltar para a página inicial
+        return redirect(route('categorias'));        
     }
 
     /**
@@ -72,7 +91,16 @@ class ControladorCategoria extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categ = Categoria::find($id);
+
+        if ( isset($categ) )
+        {            
+            $categ->nome = $request->input('nome');
+            $categ->save();
+        }
+        
+        // voltar para a página inicial
+        return redirect(route('categorias'));        
     }
 
     /**
@@ -84,5 +112,14 @@ class ControladorCategoria extends Controller
     public function destroy($id)
     {
         //
+        $categ = Categoria::find($id);
+
+        if ( isset($categ) )
+        {
+            $categ->delete();
+        }
+        
+        // voltar para a página inicial
+        return redirect(route('categorias'));
     }
 }
