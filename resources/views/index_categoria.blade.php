@@ -1,6 +1,9 @@
 @extends('layouts.app',['current_navbar' => 'categoria'])
 @section('content')
 <div class="card border">
+    <div class="card-header">
+        <h5 class="card-title">Relação de Categorias Cadastradas</h5>
+    </div>
     <div class="card-body">
         <table class="table table-hover table-bordered">
             <thead>
